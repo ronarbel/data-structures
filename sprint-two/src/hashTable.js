@@ -30,16 +30,24 @@ HashTable.prototype.insert = function(k, v) {
 HashTable.prototype.retrieve = function(k) {
   var index = getIndexBelowMaxForKey(k, this._limit);
   var bucketContents = this._storage.get(index);
-  return bucketContents.forEach(function(tuple) {
+  var result;
+  bucketContents.forEach(function(tuple) {
     if (tuple[0] === k) {
-      return tuple[1];
+      result = tuple[1];
     }
   });
+  return result;
 };
 
 HashTable.prototype.remove = function(k) {
   var index = getIndexBelowMaxForKey(k, this._limit);
-  
+  var bucketContents = this._storage.get(index);
+  bucketContents.forEach(function(tuple, tupleIndex) {
+    if (tuple[0] === k) {
+      bucketContents.splice(tupleIndex, 1);
+    }
+  });
+
 };
 
 

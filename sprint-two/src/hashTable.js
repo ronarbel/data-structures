@@ -4,7 +4,7 @@ var HashTable = function() {
   this._limit = 8;
   this._storage = LimitedArray(this._limit);
   // initialize array in each element of storage []
-  this.getIndexBelowMaxForKey();
+  this.getIndexBelowMaxForKey
 };
 
 HashTable.prototype.insert = function(k, v) {
@@ -16,21 +16,25 @@ HashTable.prototype.insert = function(k, v) {
   // get current content at index
   // push new tuple into current content
   // pass index and [[key,value], [key,value]] into this._storage.set
-  // bucketAt1[bucketAt1.length]
 
   var newTuple = [k, v];
-  var 
+  var bucketContents = this._storage.get(index);
+  if (bucketContents === undefined) {
+    bucketContents = [];
+  }
+  bucketContents.push(newTuple);
+  this._storage.set(index, bucketContents);
   
 };
 
 HashTable.prototype.retrieve = function(k) {
   var index = getIndexBelowMaxForKey(k, this._limit);
-  // var bucketArray = this._storage.get(index);
-  // for each tuple in bucketArray
-    // if tuple[0] === key
-      // return tuple[1]
-    // else
-      // return undefined
+  var bucketContents = this._storage.get(index);
+  return bucketContents.forEach(function(tuple) {
+    if (tuple[0] === k) {
+      return tuple[1];
+    }
+  });
 };
 
 HashTable.prototype.remove = function(k) {

@@ -1,6 +1,7 @@
 var Tree = function(value) {
   var newTree = {};
   newTree.value = value;
+  newTree.depth = 1;
 
   // your code here
   newTree.children = [];
@@ -13,16 +14,11 @@ var Tree = function(value) {
 var treeMethods = {};
 
 treeMethods.addChild = function(value) {
-  // this.children.push(value);
   this.children.push(Tree(value));
+  this.children[this.children.length - 1].depth = this.depth + 1;
 };
 
 treeMethods.contains = function(target) {
-  // base case: if current obj.value === target
-    // return true;
-  // else for each child in obj.children
-    // obj.children[el].contains(target)
-  // return false;
   
   if (this.value === target) {
     return true;
@@ -39,4 +35,7 @@ treeMethods.contains = function(target) {
 
 /*
  * Complexity: What is the time complexity of the above functions?
+ 
+ .addChild has O(1)
+ .contains has O(n)
  */

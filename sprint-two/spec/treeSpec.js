@@ -40,5 +40,15 @@ describe('tree', function() {
     expect(tree.contains(7)).to.equal(true);
     expect(tree.contains(8)).to.equal(true);
   });
+  
+  it('should keep track of how deep a value is in the tree', function () {
+    tree.addChild(5);
+    tree.addChild(6);
+    tree.children[0].addChild(7);
+    tree.children[1].addChild(8);
+    expect(tree.depth).to.equal(1);
+    expect(tree.children[0].depth).to.equal(2);
+    expect(tree.children[1].children[0].depth).to.equal(3);
+  });
 
 });

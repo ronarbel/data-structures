@@ -59,4 +59,12 @@ var BinarySearchTree = function(value) {
 
 /*
  * Complexity: What is the time complexity of the above functions?
+
+  .insert is O(n) because worst case a user could add
+    consecutively higher or lower numbers, resulting in a severely unbalanced tree.
+
+  .contains is O(n) because worst case a user could add
+    consecutively higher or lower numbers, resulting in a severely unbalanced tree.
+
+  .depthFirstLog is 0(n) because it needs to visit every node.
  */

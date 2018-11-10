@@ -8,7 +8,7 @@ var Graph = function() {
 Graph.prototype.addNode = function(node) {
   this[node] = {
     arcs: []
-  }
+  };
 };
 
 // Return a boolean value indicating if the value passed to contains is represented in the graph.
@@ -18,9 +18,6 @@ Graph.prototype.contains = function(node) {
 
 // Removes a node from the graph.
 Graph.prototype.removeNode = function(node) {
-  // store this node's arcs
-  // iterate over node's arcs
-    // pass each node name (arcs[i]) into removeEdge(node, arcs[i])
   var arcsToDeleteArr = this[node].arcs;
   for (var i = 0; i < arcsToDeleteArr.length; i++) {
     this.removeEdge(node, arcsToDeleteArr[i]);
@@ -65,6 +62,23 @@ Graph.prototype.forEachNode = function(cb) {
 
 /*
  * Complexity: What is the time complexity of the above functions?
+
+  .addNode has O(1), constant, because it is always one object's instantiation
+
+  .contains has O(n), linear, because Object.hasOwnProperty iterates over the length of the object's keys
+
+  .removeNode has O(1), constant, for best cases when removed node is connected to a trivial number of other nodes
+      .removeNode has O(n), linear, for worst cases when removed node is connected to all other nodes in the graph
+
+  .hasEdge has O(1), constant, for best cases when node is connected to a trivial number of other nodes
+      .hasEdge has O(n), linear, for worst cases when node is connected to all other nodes in the graph
+
+  .addEdge has O(1), constant, because it always consists of two distinct addition operations
+
+  .removeEdge has O(1), constant, for best cases when targeted node is connected to a trivial number of other nodes
+      .removeEdge has O(n), linear, for worst cases when targeted node is connected to all other nodes in the graph
+
+  .forEachNode has O(n), linear, because it always iterates over every node in the graph
  */
 
 

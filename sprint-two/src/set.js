@@ -11,7 +11,13 @@ setPrototype.add = function(item) {
 };
 
 setPrototype.contains = function(item) {
-  return this._storage.hasOwnProperty(item);
+  var containsAllArgs = true;
+  for (var i = 0; i < arguments.length; i++) {
+    if (this._storage[arguments[i]] === undefined || containsAllArgs === false) {
+      containsAllArgs = false;
+    }
+  }
+  return containsAllArgs;
 };
 
 setPrototype.remove = function(item) {
@@ -20,4 +26,8 @@ setPrototype.remove = function(item) {
 
 /*
  * Complexity: What is the time complexity of the above functions?
+
+  .add has O(1)
+  .contains has O(n)
+  .remove has O(1)
  */

@@ -24,4 +24,13 @@ describe('set', function() {
     expect(set.contains('Mel Gibson')).to.equal(false);
   });
 
+  it('should determine whether a set contains a list of specified values', function() {
+    set.add('Mel Gibson');
+    set.add('Carly Rae Jepsen');
+    set.add('Snoop Dogg');
+    set.add('Lady Gaga');
+    expect(set.contains('Mel Gibson', 'Carly Rae Jepsen', 'Snoop Dogg', 'Lady Gaga')).to.equal(true);
+    expect(set.contains('Mel Gibson', 'Carly Rae Jepsen', 'Snoop Dogg', 'Lady Gaga', 'Simon Cowell')).to.equal(false);
+  });
+
 });

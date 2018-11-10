@@ -18,11 +18,13 @@ Graph.prototype.contains = function(node) {
 
 // Removes a node from the graph.
 Graph.prototype.removeNode = function(node) {
-  var arcsToDeleteArr = this[node].arcs;
-  for (var i = 0; i < arcsToDeleteArr.length; i++) {
-    this.removeEdge(node, arcsToDeleteArr[i]);
+  if (this[node] !== undefined) {
+    var arcsToDeleteArr = this[node].arcs;
+    for (var i = 0; i < arcsToDeleteArr.length; i++) {
+      this.removeEdge(node, arcsToDeleteArr[i]);
+    }
+    delete this[node];
   }
-  delete this[node];
 };
 
 // Returns a boolean indicating whether two specified nodes are connected.  Pass in the values contained in each of the two nodes.

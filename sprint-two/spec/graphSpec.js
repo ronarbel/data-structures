@@ -68,4 +68,10 @@ describe('graph', function() {
     expect(graph.hasEdge(3, 5)).to.equal(true);
     expect(graph.hasEdge(5, 5)).to.equal(true);
   });
+
+  // Test implemented by gakittle and ronarbel for Sprint Minimum Requirements
+
+  it('should not fail when called to remove a node that is not present in the graph', function() {
+    graph.removeNode(5);
+  });
 });

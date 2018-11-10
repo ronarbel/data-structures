@@ -37,4 +37,13 @@ describe('binarySearchTree', function() {
     binarySearchTree.depthFirstLog(func);
     expect(array).to.eql([5, 2, 3, 7]);
   });
+
+  // Test implemented by gakittle and ronarbel for Data Structures Sprint Minimum Requirements
+
+  it('should keep track of how deep a value is in the tree', function () {
+    binarySearchTree.insert(2);
+    binarySearchTree.insert(3);
+    binarySearchTree.insert(7);
+    expect(binarySearchTree.left.right.depth).to.eql(3);
+  });
 });

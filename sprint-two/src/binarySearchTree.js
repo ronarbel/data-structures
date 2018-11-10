@@ -4,6 +4,7 @@ var BinarySearchTree = function(value) {
   obj.value = value;
   obj.left = null;
   obj.right = null;
+  obj.depth = 1;
 
   obj.insert = function(val) {
     var newNode = BinarySearchTree(val);
@@ -11,6 +12,7 @@ var BinarySearchTree = function(value) {
     if (newNode.value < this.value) {
       if (this.left === null) {
         this.left = newNode;
+        this.left.depth = this.depth + 1;
       } else {
         this.left.insert(val);
       }
@@ -19,6 +21,7 @@ var BinarySearchTree = function(value) {
     if (newNode.value > this.value) {
       if (this.right === null) {
         this.right = newNode;
+        this.right.depth = this.depth + 1;
       } else {
         this.right.insert(val);
       }

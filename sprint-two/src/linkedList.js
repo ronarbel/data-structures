@@ -1,57 +1,47 @@
 var LinkedList = function() {
   var list = {};
+  
   list.head = null;
   list.tail = null;
-  list.headIndex = null;
-  var nextIndex = 0;
-
+  list.counter = 0;
+  
   list.addToTail = function(value) {
-    if (list[nextIndex - 1] === undefined) {
-      var newTail = Node(value);
-      list[nextIndex] = newTail;
-
-      list.tail = list[nextIndex];
-      list.head = list[nextIndex];
-      list.headIndex = nextIndex;
-
-      nextIndex++;
+    
+    var newNode = Node(value);
+    if (list.tail === null) {
+      list.head = newNode;
+      list.tail = list.head;
     } else {
-      list[nextIndex - 1].next = nextIndex;
-
-      var newTail = Node(value);
-      list[nextIndex] = newTail;
-
-      list.tail = list[nextIndex];
-
-      nextIndex++;
+      list.tail.next = newNode;
+      list.tail = newNode;
     }
+    
+    list.counter++;
   };
-
+  
   list.removeHead = function() {
-    var oldHead = list.head;
-
-    console.log(oldHead);
-    newHeadIndex = list.head.next
-    delete list.head;
-    delete list[list.headIndex];
-    list.head = list[newHeadIndex];
-    list.headIndex = newHeadIndex;
-    return oldHead.value;;
+    formerHead = list.head;
+    list.head = list.head.next;
+    list.counter--;
+    return formerHead.value;
   };
-
-  list.contains = function(target) {
-    for (var key in list) {
-      if (typeof(Number(key)) === 'number') {
-        if (list[key].value === target) {
-          return true;
-        }
-      }
+  
+  list.contains = function(value) {
+    
+    var currentNode = list.head;
+    while (currentNode !== null) {
+      if (currentNode.value === value) {
+        return true;
+      } else {
+        currentNode = currentNode.next;
+      } 
     }
     return false;
   };
-
+  
   return list;
 };
+
 
 var Node = function(value) {
   var node = {};
@@ -62,6 +52,13 @@ var Node = function(value) {
   return node;
 };
 
+
+
+
 /*
- * Complexity: What is the time complexity of the above functions?
- */
+  * Complexity: What is the time complexity of the above functions?
+
+  .addToTail has O(1)
+  .removeHead has O(1)
+  .contains has O(n)
+*/

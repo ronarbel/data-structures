@@ -52,4 +52,13 @@ describe('linkedList', function() {
   });
 
   // add more tests here to test the functionality of linkedList
+  
+  it('should have a count of the number of values in the linked list', function() {
+    linkedList.addToTail(4);
+    linkedList.addToTail(5);
+    linkedList.addToTail(6);
+    expect(linkedList.counter).to.equal(3);
+    linkedList.removeHead();
+    expect(linkedList.counter).to.equal(2);
+  });
 });
